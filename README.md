@@ -141,15 +141,16 @@ netctl Community Edition is free and open source, maintained by **Susant Sahani*
 
 ## License
 
-netctl is licensed under the Apache License, Version 2.0.
+### Open source (Apache-2.0)
 
-Copyright © 2026 Zyvor AI Labs Private Limited.
+This repository is licensed under the [Apache License, Version 2.0](LICENSE).
+You may use, modify, and run it for personal, lab, and commercial production
+use at no charge, subject to Apache-2.0 (preserve notices / NOTICE where required).
 
-This repository contains only the netctl Community Edition source code.
+### Enterprise
 
-Other Zyvor products, platforms, services, and commercial offerings are separate works and may be governed by different licenses and terms.
-
-Enterprise: [sales@zyvor.dev](mailto:sales@zyvor.dev) · General: [info@zyvor.dev](mailto:info@zyvor.dev).
+Production support, SLAs, and Zyvor Enterprise products are licensed separately.
+Contact [sales@zyvor.dev](mailto:sales@zyvor.dev) or see [zyvor.dev](https://zyvor.dev).
 
 ## Related
 
