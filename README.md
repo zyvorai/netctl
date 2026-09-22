@@ -1,30 +1,19 @@
-<div align="center">
-
 # netctl
-
-**Network configuration CLI for Linux**
 
 [![CI](https://github.com/zyvorai/netctl/actions/workflows/ci.yml/badge.svg)](https://github.com/zyvorai/netctl/actions/workflows/ci.yml)
 [![Release](https://img.shields.io/github/v/release/zyvorai/netctl)](https://github.com/zyvorai/netctl/releases)
 [![License](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](LICENSE)
 [![Rust](https://img.shields.io/badge/rust-1.75%2B-orange.svg)](https://www.rust-lang.org)
 
-[Quick start](#quick-start) · [Enterprise](#enterprise) · [Support the project](#support-the-project) · [Releases](https://github.com/zyvorai/netctl/releases)
+![netctl — async network configuration for Linux](docs/social/netctl-share-card.png)
 
-<p align="center">
-  <a href="https://zyvor.dev/demo?utm_source=github&utm_medium=netctl"><img src="https://img.shields.io/badge/Demo-F97316?style=flat-square" alt="Demo"/></a>
-  <a href="https://zyvor.dev/docs?utm_source=github&utm_medium=netctl"><img src="https://img.shields.io/badge/Docs-2563EB?style=flat-square" alt="Docs"/></a>
-  <a href="https://zyvor.dev/blog?utm_source=github&utm_medium=netctl"><img src="https://img.shields.io/badge/Blog-71717A?style=flat-square" alt="Blog"/></a>
-  <a href="https://zyvor.dev/contact?utm_source=github&utm_medium=netctl"><img src="https://img.shields.io/badge/Contact_sales-22C55E?style=flat-square" alt="Contact"/></a>
-</p>
+**Network configuration CLI for Linux.**
 
-</div>
-
----
+📖 **[User docs](docs/user/README.md)** — installation, declarative apply, and troubleshooting.
 
 Async-first network configuration manager with a `systemctl`-style interface. Integrates with **systemd-networkd**, **systemd-resolved**, and **systemd-hostnamed** over D-Bus, and uses **netlink** for link, address, and route operations.
 
-## Table of contents
+## Contents
 
 - [Features](#features)
 - [Installation](#installation)
