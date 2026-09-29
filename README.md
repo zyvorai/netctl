@@ -5,6 +5,9 @@
 [![License](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](LICENSE)
 [![Rust](https://img.shields.io/badge/rust-1.75%2B-orange.svg)](https://www.rust-lang.org)
 
+[![Book a demo](https://img.shields.io/badge/Book_a_demo-0071e3?style=for-the-badge)](https://zyvor.dev/schedule?utm_source=github&utm_medium=netctl&utm_campaign=readme_hero)
+[![30-day PoC](https://img.shields.io/badge/30--day_PoC-1d1d1f?style=for-the-badge)](https://zyvor.dev/poc?utm_source=github&utm_medium=netctl&utm_campaign=readme_hero)
+
 ![netctl — async network configuration for Linux](docs/social/netctl-share-card.png)
 
 **Network configuration CLI for Linux.**
@@ -105,7 +108,7 @@ Issues and PRs: [github.com/zyvorai/netctl](https://github.com/zyvorai/netctl/is
 
 ## Enterprise
 
-| | Community Edition (this repo) | Enterprise ([zyvor.dev](https://zyvor.dev/?utm_source=github&utm_medium=netctl)) |
+| | Community Edition (this repo) | Enterprise ([zyvor.dev](https://zyvor.dev/?utm_source=github&utm_medium=netctl&utm_campaign=readme_edition)) |
 |---|------------------------------|-------------------------------------------------------------------------------------|
 | **Support** | [GitHub Issues](https://github.com/zyvorai/netctl/issues) | SLA, [sales@zyvor.dev](mailto:sales@zyvor.dev), professional services |
 | **Scope** | CLI and declarative apply | Supported rollouts with netevd and cloud-netconfig |
@@ -114,18 +117,19 @@ Issues and PRs: [github.com/zyvorai/netctl](https://github.com/zyvorai/netctl/is
 
 | | |
 |---|---|
-| **Demo** | [zyvor.dev/demo](https://zyvor.dev/demo?utm_source=github&utm_medium=netctl) |
-| **ROI** | [zyvor.dev/roi](https://zyvor.dev/roi?utm_source=github&utm_medium=netctl) |
-| **Pricing** | [zyvor.dev/pricing](https://zyvor.dev/pricing?utm_source=github&utm_medium=netctl) |
-| **Contact** | [zyvor.dev/contact](https://zyvor.dev/contact?utm_source=github&utm_medium=netctl) · [sales@zyvor.dev](mailto:sales@zyvor.dev) |
+| **Demo** | [zyvor.dev/demo](https://zyvor.dev/demo?utm_source=github&utm_medium=netctl&utm_campaign=readme_edition) |
+| **ROI** | [zyvor.dev/roi](https://zyvor.dev/roi?utm_source=github&utm_medium=netctl&utm_campaign=readme_edition) |
+| **Pricing** | [zyvor.dev/pricing](https://zyvor.dev/pricing?utm_source=github&utm_medium=netctl&utm_campaign=readme_edition) |
+| **Contact** | [zyvor.dev/contact](https://zyvor.dev/contact?utm_source=github&utm_medium=netctl&utm_campaign=readme_edition) · [sales@zyvor.dev](mailto:sales@zyvor.dev) |
 
 Community Edition covers CLI usage and declarative apply. Enterprise SLAs and the full stack with [netevd](https://github.com/zyvorai/netevd) and [cloud-netconfig](https://github.com/zyvorai/cloud-netconfig) → contact Zyvor (not GitHub Issues). Details: [docs/enterprise.md](docs/enterprise.md).
 
 ## Support the project
 
-netctl Community Edition is free and open source, maintained by **Susant Sahani** · [Zyvor AI Labs](https://zyvor.dev?utm_source=github&utm_medium=netctl)
+netctl Community Edition is free and open source, maintained by **Susant Sahani** · [Zyvor AI Labs](https://zyvor.dev/?utm_source=github&utm_medium=netctl&utm_campaign=readme_footer)
 
-- **Enterprise / production:** [zyvor.dev/contact](https://zyvor.dev/contact?utm_source=github&utm_medium=netctl) · [sales@zyvor.dev](mailto:sales@zyvor.dev)
+- **Enterprise / production:** [zyvor.dev/contact](https://zyvor.dev/contact?utm_source=github&utm_medium=netctl&utm_campaign=readme_footer) · [sales@zyvor.dev](mailto:sales@zyvor.dev)
+- **Demo and PoC:** [Book a demo](https://zyvor.dev/schedule?utm_source=github&utm_medium=netctl&utm_campaign=readme_footer) · [30-day PoC](https://zyvor.dev/poc?utm_source=github&utm_medium=netctl&utm_campaign=readme_footer)
 - **Community help:** [GitHub Issues](https://github.com/zyvorai/netctl/issues)
 
 ## License
@@ -139,7 +143,7 @@ use at no charge, subject to Apache-2.0 (preserve notices / NOTICE where require
 ### Enterprise
 
 Production support, SLAs, and Zyvor Enterprise products are licensed separately.
-Contact [sales@zyvor.dev](mailto:sales@zyvor.dev) or see [zyvor.dev](https://zyvor.dev).
+Contact [sales@zyvor.dev](mailto:sales@zyvor.dev) or see [zyvor.dev](https://zyvor.dev/?utm_source=github&utm_medium=netctl&utm_campaign=readme_edition).
 
 ## Related
 
