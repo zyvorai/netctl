@@ -8,58 +8,47 @@
   Build: ./docs/social/build-hero-dark.sh  ->  netctl-hero-dark.jpg (2400x1260)
 -->
 <style>
-  :root { --blue:#0071e3; --signal:#2997ff; --cyan:#64d2ff; --green:#30d158; --amber:#ff9f0a;
+  :root { --blue:#0071e3; --signal:#2997ff; --cyan:#64d2ff; --green:#30d158; --amber:#ff9f0a; --red:#ff453a; --violet:#bf5af2;
     --sans:'SF Pro Display','Helvetica Neue',Helvetica,Arial,sans-serif; --mono:'SF Mono',Menlo,Consolas,monospace; }
   * { box-sizing:border-box; }
   html,body { margin:0; padding:0; }
   body { width:1200px; height:630px; overflow:hidden; color:#f5f5f7; font-family:var(--sans); position:relative; background:#000; }
   .aurora { position:absolute; inset:0;
-    background:radial-gradient(720px 460px at 80% 16%, rgba(41,151,255,.40), transparent 62%),
-               radial-gradient(600px 420px at 104% 98%, rgba(100,210,255,.20), transparent 60%),
+    background:radial-gradient(720px 460px at 80% 16%, rgba(41,151,255,.34), transparent 62%),
+               radial-gradient(600px 420px at 104% 98%, rgba(100,210,255,.16), transparent 60%),
                radial-gradient(520px 380px at 6% 110%, rgba(0,113,227,.28), transparent 60%); }
-  .grid { position:absolute; inset:0; opacity:.09;
-    background-image:linear-gradient(rgba(120,180,255,.9) 1px,transparent 1px),linear-gradient(90deg,rgba(120,180,255,.9) 1px,transparent 1px);
-    background-size:44px 44px; -webkit-mask-image:radial-gradient(900px 520px at 72% 42%, #000 18%, transparent 75%); }
-  .left { position:absolute; left:60px; top:52px; width:560px; z-index:3; }
+  .copy { position:absolute; left:60px; top:52px; width:560px; z-index:3; }
   .brand { display:flex; align-items:center; gap:12px; font-family:var(--mono); font-size:14px; letter-spacing:.18em; text-transform:uppercase; color:#a1a1a6; }
   .brand b { color:#fff; }
   .word { margin:20px 0 0; font-size:112px; line-height:.95; font-weight:800; letter-spacing:-.05em; white-space:nowrap;
     background:linear-gradient(92deg,#fff 0%,#e3f0ff 38%,var(--signal) 74%,var(--cyan) 100%); -webkit-background-clip:text; background-clip:text; color:transparent; padding-bottom:6px; }
   .tag { margin:14px 0 0; font-size:31px; line-height:1.15; font-weight:700; letter-spacing:-.02em; }
   .tag em { font-style:normal; color:var(--signal); }
-  .lede { margin:12px 0 0; font-size:18px; line-height:1.45; color:#b8b8bf; width:520px; }
+  .lede { margin:12px 0 0; font-size:18px; line-height:1.45; color:#b8b8bf; width:520px; text-shadow:0 1px 12px #000; }
   .stats { margin-top:24px; display:flex; gap:32px; }
   .stat b { display:block; font-size:34px; font-weight:800; letter-spacing:-.03em; color:#fff; }
   .stat span { font-family:var(--mono); font-size:12px; letter-spacing:.12em; text-transform:uppercase; color:#8e8e93; }
   .pill { position:absolute; left:60px; bottom:40px; display:flex; gap:10px; z-index:3; }
-  .pill span { font-family:var(--mono); font-size:13.5px; font-weight:700; padding:7px 13px; border-radius:18px; border:1.5px solid rgba(255,255,255,.2); color:#e5e5ea; background:rgba(255,255,255,.04); }
+  .pill span { font-family:var(--mono); font-size:13.5px; font-weight:700; padding:7px 13px; border-radius:18px; border:1.5px solid rgba(255,255,255,.2); color:#e5e5ea; background:rgba(0,0,0,.6); }
   .pill span.b { background:var(--blue); border-color:var(--blue); color:#fff; box-shadow:0 0 24px rgba(0,113,227,.55); }
-
-  .right { position:absolute; left:652px; top:96px; width:560px; z-index:2; }
-  .win { position:relative; width:560px; border-radius:16px; overflow:hidden; z-index:2;
-    background:linear-gradient(180deg, rgba(22,24,30,.94), rgba(10,11,14,.96));
-    box-shadow:0 50px 100px rgba(0,0,0,.75), 0 0 0 1px rgba(255,255,255,.14), 0 0 90px rgba(41,151,255,.22);
-    transform:perspective(1600px) rotateY(-14deg) rotateX(4deg); transform-origin:left center; }
-  .bar { height:34px; display:flex; align-items:center; gap:8px; padding:0 14px; background:rgba(255,255,255,.05); border-bottom:1px solid rgba(255,255,255,.07); }
-  .bar i { width:11px; height:11px; border-radius:50%; background:#ff5f57; } .bar i:nth-child(2){background:#febc2e} .bar i:nth-child(3){background:#28c840}
-  .bar em { margin-left:auto; margin-right:auto; font-style:normal; font-family:var(--mono); font-size:12px; color:#8e8e93; transform:translateX(-24px); }
-  .term { min-height:214px; padding:20px 22px 24px; font-family:var(--mono); font-size:15.5px; line-height:1.75; }
-  .l { white-space:pre; overflow:hidden; text-overflow:ellipsis; color:#f5f5f7; }
-  .l .p { color:var(--signal); font-weight:700; }
-  .l.out { color:#a1a1a6; }
-  .l.cm { color:#6e6e73; }
-  .l.ok { color:#d1f7dc; } .l.ok span { color:var(--green); font-weight:700; }
-  .l.warn { color:#ffe1b0; } .l.warn span { color:var(--amber); font-weight:700; }
-  .cur { display:inline-block; width:9px; height:18px; background:var(--signal); vertical-align:-3px; box-shadow:0 0 12px var(--signal); }
-  .chips { margin:34px 0 0 38px; width:480px; display:flex; flex-wrap:wrap; gap:10px; position:relative; z-index:3; }
-  .chips span { font-family:var(--mono); font-size:13px; font-weight:700; letter-spacing:.04em; padding:7px 12px; border-radius:14px;
-    color:#cfe6ff; background:rgba(10,20,35,.82); border:1px solid rgba(41,151,255,.45); box-shadow:0 0 18px rgba(41,151,255,.18); }
+  .art { position:absolute; left:520px; top:0; width:680px; height:630px; z-index:2; }
+  .art svg { display:block; }
+  #labels { position:absolute; inset:0; z-index:4; pointer-events:none; }
+  .lbl { position:absolute; font-family:var(--mono); font-size:12.5px; color:#a1a1a6; text-align:center; transform:translate(-50%,-50%); white-space:nowrap; }
+  .lbl b { display:block; font-size:12px; letter-spacing:.16em; text-transform:uppercase; color:#e5e5ea; }
+  .lbl span { display:block; margin-top:3px; }
+  .lbl.box { padding:7px 12px; border-radius:12px; background:rgba(8,10,14,.85); border:1px solid rgba(255,255,255,.14); }
+  .lbl.chip { padding:6px 11px; border-radius:13px; font-size:12.5px; font-weight:700; color:#cfe6ff; background:rgba(10,20,35,.85); border:1px solid rgba(41,151,255,.5); box-shadow:0 0 16px rgba(41,151,255,.2); }
+  .lbl.left { transform:translate(0,-50%); text-align:left; }
+  .lbl.right { transform:translate(-100%,-50%); text-align:right; }
+  .ok { color:var(--green) !important; } .warn { color:var(--amber) !important; } .bad { color:var(--red) !important; } .sig { color:var(--signal) !important; } .cy { color:var(--cyan) !important; } .vi { color:var(--violet) !important; }
 </style>
 </head>
 <body>
 <div class="aurora"></div>
-<div class="grid"></div>
-<div class="left">
+<div class="art"><svg id="art" width="680" height="630" viewBox="0 0 680 630" xmlns="http://www.w3.org/2000/svg"></svg></div>
+<div id="labels"></div>
+<div class="copy">
   <div class="brand"><svg viewBox="0 0 64 64" width="30" height="30" aria-hidden="true"><defs><linearGradient id="zb" x1="8" y1="8" x2="56" y2="56" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#ff5a15"/><stop offset="1" stop-color="#cc420a"/></linearGradient></defs><rect width="64" height="64" rx="15" fill="url(#zb)"/><path d="M18.5,20.5 45.5,20.5 18.5,43.5 45.5,43.5" fill="none" stroke="#fff" stroke-width="8.3" stroke-linecap="round" stroke-linejoin="round"/></svg><b>Zyvor</b><span>&middot;</span><span>Linux network configuration</span></div>
   <div class="word">netctl</div>
   <div class="tag">Configure Linux networks<br><em>like systemctl.</em></div>
@@ -67,8 +56,103 @@
   <div class="stats"><div class="stat"><b>17</b><span>subcommands</span></div><div class="stat"><b>6</b><span>workspace crates</span></div><div class="stat"><b>3</b><span>systemd services</span></div></div>
 </div>
 <div class="pill"><span class="b">github.com/zyvorai/netctl</span><span>Apache-2.0</span></div>
-<div class="right"><div class="win"><div class="bar"><i></i><i></i><i></i><em>netctl</em></div>
-<div class="term"><div class="l"><span class="p">$</span> sudo netctl link set eth0 state up</div><div class="l ok"><span>&#10003;</span> Interface eth0 is now up</div><div class="l"><span class="p">$</span> sudo netctl addr add eth0 192.168.1.100/24</div><div class="l ok"><span>&#10003;</span> Address 192.168.1.100/24 added to eth0</div><div class="l"><span class="p">$</span> sudo netctl doctor</div><div class="l ok"><span>&#10003;</span> All checks passed!</div><div class="l"><span class="p">$</span> <i class="cur"></i></div></div></div>
-<div class="chips"><span>Rust</span><span>netlink</span><span>systemd-networkd</span><span>D-Bus</span><span>YAML/TOML</span><span>TUI</span></div></div>
+<script>
+var Z = (function () {
+  var NS = 'http://www.w3.org/2000/svg', svg = document.getElementById('art'), labels = document.getElementById('labels');
+  var seed = 20261004;
+  function rnd() { seed = (seed * 1103515245 + 12345) % 2147483648; return seed / 2147483648; }
+  function el(tag, a, parent) { var n = document.createElementNS(NS, tag); for (var k in a) n.setAttribute(k, a[k]); (parent || svg).appendChild(n); return n; }
+  function g(attrs) { return el('g', attrs || {}); }
+  function label(x, y, inner, cls, style) { var d = document.createElement('div'); d.className = 'lbl ' + (cls || ''); d.style.left = (520 + x) + 'px'; d.style.top = y + 'px'; if (style) d.setAttribute('style', d.getAttribute('style') + ';' + style); d.innerHTML = inner; labels.appendChild(d); return d; }
+  return { NS: NS, svg: svg, W: 680, H: 630, rnd: rnd, el: el, g: g, label: label,
+    reseed: function (s) { seed = s; },
+    c: { blue: '#0071e3', signal: '#2997ff', cyan: '#64d2ff', green: '#30d158', amber: '#ff9f0a', red: '#ff453a', violet: '#bf5af2', teal: '#40c8e0', indigo: '#5e5ce6', pink: '#ff375f', white: '#f5f5f7', grey: '#8e8e93' } };
+})();
+(function () {
+// netctl: a patch bay. The top panel holds the netctl verbs; smooth patch cables drop to the bottom panel,
+// where netlink and the systemd D-Bus services take them.
+var C = Z.c, x0 = 110, x1 = 650, mono = 'ui-monospace, SFMono-Regular, Menlo, monospace';
+var defs = Z.el('defs', {});
+defs.innerHTML = '<filter id="nc-gl" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="2.6" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>' +
+  '<filter id="nc-sf" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="12"/></filter>' +
+  '<filter id="nc-sh" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="5"/></filter>' +
+  '<linearGradient id="nc-panel" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#14263f"/><stop offset=".5" stop-color="#0c182b"/><stop offset="1" stop-color="#08111f"/></linearGradient>';
+function f(v) { return v.toFixed(1); }
+function txt(x, y, s, fill, size, anchor, ls) {
+  var t = Z.el('text', { x: f(x), y: f(y), fill: fill, 'font-family': mono, 'font-size': size, 'text-anchor': anchor || 'middle', 'letter-spacing': ls || '.06em' });
+  t.textContent = s; return t;
+}
+
+// panel: rack rails, screws, a row of ports; returns port centres
+function panel(y, h, n, title) {
+  Z.el('rect', { x: x0 - 6, y: y + 6, width: x1 - x0 + 12, height: h, rx: 8, fill: '#000', opacity: .5, filter: 'url(#nc-sh)' });
+  Z.el('rect', { x: x0, y: y, width: x1 - x0, height: h, rx: 7, fill: 'url(#nc-panel)', stroke: 'rgba(120,185,255,.28)' });
+  Z.el('line', { x1: x0 + 8, y1: y + 1.5, x2: x1 - 8, y2: y + 1.5, stroke: 'rgba(200,230,255,.18)' });
+  [x0 + 14, x1 - 14].forEach(function (sx) { [y + 14, y + h - 14].forEach(function (sy) {
+    Z.el('circle', { cx: sx, cy: sy, r: 4, fill: '#0a1424', stroke: 'rgba(120,185,255,.35)' });
+    Z.el('line', { x1: sx - 2.5, y1: sy, x2: sx + 2.5, y2: sy, stroke: 'rgba(120,185,255,.5)' });
+  }); });
+  var ports = [], pw = 30, gap = (x1 - x0 - 60 - n * pw) / (n - 1);
+  for (var i = 0; i < n; i++) {
+    var px = x0 + 30 + i * (pw + gap), py = y + h / 2 - 8;
+    Z.el('rect', { x: f(px), y: f(py - 10), width: pw, height: 24, rx: 3, fill: '#04080f', stroke: 'rgba(120,185,255,.4)' });
+    Z.el('path', { d: 'M' + f(px + 8) + ',' + f(py + 14) + ' v4 h14 v-4', fill: 'none', stroke: 'rgba(120,185,255,.4)' });
+    for (var k = 0; k < 6; k++) Z.el('line', { x1: f(px + 6 + k * 3.6), y1: f(py - 7), x2: f(px + 6 + k * 3.6), y2: f(py - 3), stroke: 'rgba(255,200,90,.35)', 'stroke-width': 1.2 });
+    ports.push({ x: px + pw / 2, y: py + 2, i: i });
+  }
+  return ports;
+}
+
+Z.el('ellipse', { cx: 380, cy: 320, rx: 300, ry: 200, fill: '#0071e3', opacity: .12, filter: 'url(#nc-sf)' });
+var topY = 104, botY = 404, ph = 74, NP = 12;
+var top = panel(topY, ph, NP), bot = panel(botY, ph, NP);
+
+// cables: verb -> backend
+var verbs = [
+  { p: 1, n: 'link', c: C.cyan, to: 4 },
+  { p: 3, n: 'addr', c: C.signal, to: 2 },
+  { p: 5, n: 'route', c: C.teal, to: 3 },
+  { p: 8, n: 'dns', c: C.violet, to: 10 },
+  { p: 10, n: 'hostname', c: C.indigo, to: 8 }
+];
+var backs = [
+  { from: 2, to: 4, label: 'netlink', sub: 'link &middot; addr &middot; route', c: C.cyan },
+  { from: 7, to: 10, label: 'D-Bus', sub: 'resolved &middot; hostnamed', c: C.violet }
+];
+// group brackets under bottom panel
+backs.forEach(function (b) {
+  var a = bot[b.from].x - 18, z = bot[b.to].x + 18, y = botY + ph + 14;
+  Z.el('path', { d: 'M' + f(a) + ',' + f(y - 6) + ' v6 H' + f(z) + ' v-6', fill: 'none', stroke: b.c, opacity: .6 });
+  Z.label((a + z) / 2, y + 30, '<b>' + b.label + '</b><span>' + b.sub + '</span>');
+});
+
+var jx = 0;
+verbs.forEach(function (v, k) {
+  var s = top[v.p], e = bot[v.to];
+  var sy = s.y + 18, ey = e.y - 10, pull = [210, 150, 185, 170, 200][k];
+  var d = 'M' + f(s.x) + ',' + f(sy) + ' C' + f(s.x) + ',' + f(sy + pull) + ' ' + f(e.x) + ',' + f(ey - pull) + ' ' + f(e.x) + ',' + f(ey);
+  Z.el('path', { d: d, fill: 'none', stroke: '#000', 'stroke-width': 9, opacity: .45, filter: 'url(#nc-sh)', transform: 'translate(4,8)' });
+  Z.el('path', { d: d, fill: 'none', stroke: v.c, 'stroke-width': 6, 'stroke-linecap': 'round', opacity: .9 });
+  Z.el('path', { d: d, fill: 'none', stroke: '#fff', 'stroke-width': 1.4, 'stroke-linecap': 'round', opacity: .35, transform: 'translate(-1.4,-1)' });
+  // plug boots
+  [[s.x, s.y, 1], [e.x, e.y, -1]].forEach(function (pp) {
+    Z.el('rect', { x: f(pp[0] - 9), y: f(pp[1] - 12), width: 18, height: 26, rx: 4, fill: v.c, opacity: .95, filter: 'url(#nc-gl)' });
+    Z.el('rect', { x: f(pp[0] - 5), y: f(pp[1] - 7), width: 10, height: 6, rx: 1.5, fill: '#fff', opacity: .55 });
+  });
+  // LED above the top port + verb label
+  Z.el('circle', { cx: f(s.x), cy: f(topY + 12), r: 2.6, fill: C.green, filter: 'url(#nc-gl)' });
+  txt(s.x, topY - 12, v.n, '#d6ebff', 13);
+});
+// a loose spare cable hanging from the top panel
+var sp = top[11], sd = 'M' + f(sp.x) + ',' + f(sp.y + 18) + ' C' + f(sp.x + 6) + ',' + f(sp.y + 130) + ' ' + f(sp.x - 70) + ',' + f(sp.y + 150) + ' ' + f(sp.x - 62) + ',' + f(sp.y + 96);
+Z.el('path', { d: sd, fill: 'none', stroke: 'rgba(160,190,230,.35)', 'stroke-width': 5, 'stroke-linecap': 'round' });
+Z.el('rect', { x: f(sp.x - 9), y: f(sp.y - 12), width: 18, height: 26, rx: 4, fill: 'rgba(160,190,230,.45)' });
+Z.el('rect', { x: f(sp.x - 70), y: f(sp.y + 80), width: 16, height: 22, rx: 4, fill: 'rgba(160,190,230,.45)', transform: 'rotate(-14 ' + f(sp.x - 62) + ' ' + f(sp.y + 91) + ')' });
+// dim LEDs on unused ports
+top.concat(bot).forEach(function (p) { Z.el('circle', { cx: f(p.x + 11), cy: f(p.y + 18), r: 1.4, fill: 'rgba(120,185,255,.4)' }); });
+
+Z.label(380, 584, 'systemctl-style &middot; declarative apply', 'chip');
+})();
+</script>
 </body>
 </html>
