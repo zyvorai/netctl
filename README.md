@@ -8,7 +8,7 @@
 [![Book a demo](https://img.shields.io/badge/Book_a_demo-0071e3?style=for-the-badge)](https://zyvor.dev/schedule?utm_source=github&utm_medium=netctl&utm_campaign=readme_hero)
 [![30-day PoC](https://img.shields.io/badge/30--day_PoC-1d1d1f?style=for-the-badge)](https://zyvor.dev/poc?utm_source=github&utm_medium=netctl&utm_campaign=readme_hero)
 
-![netctl — async network configuration for Linux](docs/social/netctl-share-card.png)
+![netctl — async network configuration for Linux](docs/social/netctl-hero-dark.jpg)
 
 **Network configuration CLI for Linux.**
 
@@ -122,7 +122,7 @@ Issues and PRs: [github.com/zyvorai/netctl](https://github.com/zyvorai/netctl/is
 | **Pricing** | [zyvor.dev/pricing](https://zyvor.dev/pricing?utm_source=github&utm_medium=netctl&utm_campaign=readme_edition) |
 | **Contact** | [zyvor.dev/contact](https://zyvor.dev/contact?utm_source=github&utm_medium=netctl&utm_campaign=readme_edition) · [sales@zyvor.dev](mailto:sales@zyvor.dev) |
 
-Community Edition covers CLI usage and declarative apply. Enterprise SLAs and the full stack with [netevd](https://github.com/zyvorai/netevd) and [cloud-netconfig](https://github.com/zyvorai/cloud-netconfig) → contact Zyvor (not GitHub Issues). Details: [docs/enterprise.md](docs/enterprise.md).
+Community Edition covers CLI usage and declarative apply. Enterprise SLAs and the full stack with [netevd](https://github.com/zyvorai/zyvor-netevd) and [cloud-netconfig](https://github.com/zyvorai/zyvor-cloud-netconfig) → contact Zyvor (not GitHub Issues). Details: [docs/enterprise.md](docs/enterprise.md).
 
 ## Support the project
 
@@ -149,4 +149,4 @@ Contact [sales@zyvor.dev](mailto:sales@zyvor.dev) or see [zyvor.dev](https://zyv
 
 ## Related
 
-[netevd](https://github.com/zyvorai/netevd) · [cloud-netconfig](https://github.com/zyvorai/cloud-netconfig) · [zyvorai](https://github.com/zyvorai)
+[netevd](https://github.com/zyvorai/zyvor-netevd) · [cloud-netconfig](https://github.com/zyvorai/zyvor-cloud-netconfig) · [zyvorai](https://github.com/zyvorai)
