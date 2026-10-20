@@ -32,10 +32,14 @@ pub fn init_tracing(format: LogFormat, level: LogLevel) {
 
     match format {
         LogFormat::Pretty => {
-            registry.with(fmt::layer().pretty()).init();
+            registry
+                .with(fmt::layer().pretty().with_writer(std::io::stderr))
+                .init();
         }
         LogFormat::Json => {
-            registry.with(fmt::layer().json()).init();
+            registry
+                .with(fmt::layer().json().with_writer(std::io::stderr))
+                .init();
         }
     }
 }

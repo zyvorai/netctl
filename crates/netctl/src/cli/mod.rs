@@ -22,6 +22,24 @@ pub mod wizard;
 use clap::{Parser, Subcommand};
 use miette::Result;
 
+/// Reject names that could escape the state directory when joined into a path.
+pub(crate) fn validate_name(name: &str) -> Result<&str> {
+    let ok = !name.is_empty()
+        && name != "."
+        && name != ".."
+        && name
+            .chars()
+            .all(|c| c.is_ascii_alphanumeric() || matches!(c, '.' | '_' | '-'));
+    if ok {
+        Ok(name)
+    } else {
+        Err(miette::miette!(
+            "Invalid name '{}': use only letters, digits, '.', '_' and '-'",
+            name
+        ))
+    }
+}
+
 #[derive(Parser)]
 #[command(name = "netctl")]
 #[command(author, version, about = "Modern network configuration tool", long_about = None)]
@@ -108,6 +126,41 @@ impl Cli {
             Commands::Backup(cmd) => cmd.execute().await,
             Commands::Test(cmd) => cmd.execute().await,
             Commands::Export(args) => args.execute().await,
+        }
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use clap::CommandFactory;
+
+    #[test]
+    fn cli_definition_is_valid() {
+        Cli::command().debug_assert();
+    }
+
+    #[test]
+    fn validate_name_accepts_plain_names() {
+        for n in ["home", "work-1", "a_b.c", "20240101_120000"] {
+            assert!(validate_name(n).is_ok(), "{n}");
+        }
+    }
+
+    #[test]
+    fn validate_name_rejects_traversal() {
+        for n in [
+            "",
+            ".",
+            "..",
+            "../x",
+            "a/b",
+            "/etc/passwd",
+            "a\\b",
+            "a b",
+            "x\0",
+        ] {
+            assert!(validate_name(n).is_err(), "{n:?}");
         }
     }
 }

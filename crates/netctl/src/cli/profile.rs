@@ -111,7 +111,7 @@ impl SaveArgs {
         let profile_dir = get_profile_dir()?;
         fs::create_dir_all(&profile_dir).into_diagnostic()?;
 
-        let profile_path = profile_dir.join(format!("{}.yaml", self.name));
+        let profile_path = profile_dir.join(format!("{}.yaml", super::validate_name(&self.name)?));
         let yaml = serde_yaml::to_string(&profile).into_diagnostic()?;
         fs::write(&profile_path, yaml).into_diagnostic()?;
 
@@ -173,7 +173,8 @@ impl LoadArgs {
 
 impl DeleteArgs {
     pub async fn execute(self) -> Result<()> {
-        let profile_path = get_profile_dir()?.join(format!("{}.yaml", self.name));
+        let profile_path =
+            get_profile_dir()?.join(format!("{}.yaml", super::validate_name(&self.name)?));
 
         if !profile_path.exists() {
             return Err(miette::miette!("Profile '{}' not found", self.name));
@@ -265,7 +266,7 @@ fn get_profile_dir() -> Result<PathBuf> {
 }
 
 pub fn load_profile(name: &str) -> Result<NetworkProfile> {
-    let profile_path = get_profile_dir()?.join(format!("{}.yaml", name));
+    let profile_path = get_profile_dir()?.join(format!("{}.yaml", super::validate_name(name)?));
 
     if !profile_path.exists() {
         return Err(miette::miette!("Profile '{}' not found", name));

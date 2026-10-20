@@ -128,7 +128,7 @@ impl CreateArgs {
         let backup_dir = get_backup_dir()?;
         fs::create_dir_all(&backup_dir).into_diagnostic()?;
 
-        let backup_path = backup_dir.join(format!("{}.json", self.name));
+        let backup_path = backup_dir.join(format!("{}.json", super::validate_name(&self.name)?));
         let json = serde_json::to_string_pretty(&backup).into_diagnostic()?;
         fs::write(&backup_path, json).into_diagnostic()?;
 
@@ -248,7 +248,8 @@ impl RestoreArgs {
 
 impl DeleteArgs {
     pub async fn execute(self) -> Result<()> {
-        let backup_path = get_backup_dir()?.join(format!("{}.json", self.name));
+        let backup_path =
+            get_backup_dir()?.join(format!("{}.json", super::validate_name(&self.name)?));
 
         if !backup_path.exists() {
             return Err(miette::miette!("Backup '{}' not found", self.name));
@@ -333,7 +334,7 @@ fn get_backup_dir() -> Result<PathBuf> {
 }
 
 fn load_backup(name: &str) -> Result<Backup> {
-    let backup_path = get_backup_dir()?.join(format!("{}.json", name));
+    let backup_path = get_backup_dir()?.join(format!("{}.json", super::validate_name(name)?));
 
     if !backup_path.exists() {
         return Err(miette::miette!("Backup '{}' not found", name));

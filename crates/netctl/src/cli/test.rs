@@ -184,11 +184,13 @@ impl PingArgs {
         println!();
 
         let mut cmd = Command::new("ping");
-        cmd.args(["-c", &self.count.to_string(), &self.host]);
+        cmd.args(["-c", &self.count.to_string()]);
 
         if let Some(ref iface) = self.interface {
             cmd.args(["-I", iface]);
         }
+        // `--` stops option parsing so a host such as "-f" is not read as a flag
+        cmd.args(["--", &self.host]);
 
         let output = cmd.output().into_diagnostic()?;
 

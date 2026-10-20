@@ -48,7 +48,7 @@ impl ValidateArgs {
             Ok(c) => c,
             Err(e) => {
                 println!("{} Failed to read file: {}", "✗".red(), e);
-                return Ok(());
+                std::process::exit(1);
             }
         };
 
@@ -59,7 +59,7 @@ impl ValidateArgs {
                     Ok(c) => c,
                     Err(e) => {
                         println!("{} Invalid TOML: {}", "✗".red(), e);
-                        return Ok(());
+                        std::process::exit(1);
                     }
                 }
             } else {
@@ -67,7 +67,7 @@ impl ValidateArgs {
                     Ok(c) => c,
                     Err(e) => {
                         println!("{} Invalid YAML: {}", "✗".red(), e);
-                        return Ok(());
+                        std::process::exit(1);
                     }
                 }
             };
