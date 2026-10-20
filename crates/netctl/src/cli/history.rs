@@ -251,7 +251,7 @@ fn load_all_history() -> Result<Vec<HistoryEntry>> {
 
 fn load_history_entry(id: &str) -> Result<HistoryEntry> {
     let history_dir = get_history_dir()?;
-    let path = history_dir.join(format!("{}.json", id));
+    let path = history_dir.join(format!("{}.json", super::validate_name(id)?));
 
     if !path.exists() {
         return Err(miette::miette!("History entry '{}' not found", id));
