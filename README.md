@@ -25,6 +25,8 @@
 
 ---
 
+[Client overview (PDF)](docs/netctl-Client-Overview.pdf)
+
 ## Why netctl
 
 | When this happens… | netctl gives you… |
