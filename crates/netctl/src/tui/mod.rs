@@ -1,0 +1,147 @@
+// Copyright 2026 Zyvor AI Labs · https://zyvor.dev
+// SPDX-License-Identifier: LicenseRef-Zyvor-Production-1.0
+
+pub mod app;
+pub mod colors;
+#[allow(dead_code)] // superseded by app::App; kept for reference/future reuse
+pub mod dashboard;
+
+use crossterm::{
+    event::{self, Event, KeyCode, KeyEvent, KeyModifiers},
+    terminal::{disable_raw_mode, enable_raw_mode, EnterAlternateScreen, LeaveAlternateScreen},
+    ExecutableCommand,
+};
+use miette::{IntoDiagnostic, Result};
+use ratatui::prelude::*;
+use std::io::{self, stdout};
+use std::time::{Duration, Instant};
+
+pub use app::App;
+
+pub fn init_terminal() -> Result<Terminal<CrosstermBackend<io::Stdout>>> {
+    enable_raw_mode().into_diagnostic()?;
+    stdout().execute(EnterAlternateScreen).into_diagnostic()?;
+    let terminal = Terminal::new(CrosstermBackend::new(stdout())).into_diagnostic()?;
+    Ok(terminal)
+}
+
+pub fn restore_terminal() -> Result<()> {
+    disable_raw_mode().into_diagnostic()?;
+    stdout().execute(LeaveAlternateScreen).into_diagnostic()?;
+    Ok(())
+}
+
+pub async fn run(mut app: App) -> Result<()> {
+    let mut terminal = init_terminal()?;
+    let tick_rate = Duration::from_millis(250);
+    let mut last_tick = Instant::now();
+
+    loop {
+        // Get interface count for navigation
+        let interface_count = match app.manager.list_links().await {
+            Ok(links) => links.len(),
+            Err(_) => 0,
+        };
+
+        // Draw UI
+        terminal
+            .draw(|frame| {
+                tokio::task::block_in_place(|| {
+                    tokio::runtime::Handle::current().block_on(async {
+                        if let Err(e) = app.render(frame).await {
+                            eprintln!("Render error: {}", e);
+                        }
+                    })
+                });
+            })
+            .into_diagnostic()?;
+
+        // Calculate timeout
+        let timeout = tick_rate
+            .checked_sub(last_tick.elapsed())
+            .unwrap_or_else(|| Duration::from_secs(0));
+
+        // Handle events
+        if event::poll(timeout).into_diagnostic()? {
+            if let Event::Key(key) = event::read().into_diagnostic()? {
+                handle_key_event(&mut app, key, interface_count);
+                if app.should_quit {
+                    break;
+                }
+            }
+        }
+
+        // Update tick
+        if last_tick.elapsed() >= tick_rate {
+            last_tick = Instant::now();
+        }
+    }
+
+    restore_terminal()?;
+    Ok(())
+}
+
+fn handle_key_event(app: &mut App, key: KeyEvent, interface_count: usize) {
+    // Handle help overlay first
+    if app.show_help {
+        match key.code {
+            KeyCode::Char('q') | KeyCode::Esc | KeyCode::Char('h') | KeyCode::F(1) => {
+                app.toggle_help();
+            }
+            _ => {}
+        }
+        return;
+    }
+
+    // Handle searching
+    if app.is_searching {
+        match key.code {
+            KeyCode::Esc => {
+                app.cancel_search();
+            }
+            KeyCode::Enter => {
+                app.is_searching = false;
+            }
+            KeyCode::Backspace => {
+                app.backspace_search();
+            }
+            KeyCode::Char(c) => {
+                app.append_to_search(c);
+            }
+            _ => {}
+        }
+        return;
+    }
+
+    // Normal key handling
+    match key.code {
+        KeyCode::Char('q') | KeyCode::Esc => {
+            app.quit();
+        }
+        KeyCode::Char('c') if key.modifiers.contains(KeyModifiers::CONTROL) => {
+            app.quit();
+        }
+        KeyCode::Tab => {
+            app.next_view();
+        }
+        KeyCode::BackTab => {
+            app.previous_view();
+        }
+        KeyCode::Down | KeyCode::Char('j') => {
+            app.next(interface_count);
+        }
+        KeyCode::Up | KeyCode::Char('k') => {
+            app.previous();
+        }
+        KeyCode::Char('h') | KeyCode::F(1) => {
+            app.toggle_help();
+        }
+        KeyCode::Char('i') => {
+            app.toggle_stats_bar();
+        }
+        KeyCode::Char('/') => {
+            app.start_search();
+        }
+        _ => {}
+    }
+}
