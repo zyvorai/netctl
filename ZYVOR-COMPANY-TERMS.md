@@ -1,6 +1,6 @@
 # Zyvor company terms — netctl distribution
 
-**Supplemental agreement — read together with [LICENSE](LICENSE) (Zyvor Production License v1.0).**
+**Supplemental agreement — read together with [LICENSE](LICENSE) (Zyvor Production Licence v2.0).**
 
 **Company:** ZyvorAI Labs Private Limited · [zyvor.dev](https://zyvor.dev)  
 **Product:** netctl  
@@ -12,10 +12,10 @@
 
 | Layer | Governs |
 |-------|---------|
-| **[LICENSE](LICENSE)** | netctl **software** — Zyvor Production License v1.0 (source-available) |
+| **[LICENSE](LICENSE)** | netctl **software** — Zyvor Production Licence v2.0 (source-available) |
 | **This document** | **Zyvor-branded** builds, binaries, user bundles, and zyvor.dev distribution |
 
-You must comply with **both**. The Zyvor Production License v1.0 controls use of the **software**; this document covers **brand, distribution, and commercial relationship** with Zyvor.
+You must comply with **both**. The Zyvor Production Licence v2.0 controls use of the **software**; this document covers **brand, distribution, and commercial relationship** with Zyvor.
 
 ## 2. Acceptance
 

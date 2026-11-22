@@ -1,5 +1,5 @@
 // Copyright 2026 Zyvor AI Labs · https://zyvor.dev
-// SPDX-License-Identifier: LicenseRef-Zyvor-Production-1.0
+// SPDX-License-Identifier: LicenseRef-Zyvor-Production-2.0
 
 import type {ReactNode} from 'react';
 import clsx from 'clsx';
@@ -89,7 +89,7 @@ function TrustBand() {
               Source-available, Rust
             </Heading>
             <p>
-              Zyvor Production License, written in Rust. netctl
+              Zyvor Production Licence, written in Rust. netctl
               ships the full feature set — link/address/
               route/DNS/hostname management, declarative apply, doctor
               diagnostics, TUI, and shell completions. Zyvor Enterprise
@@ -105,7 +105,7 @@ function TrustBand() {
             />
             <img
               src="https://img.shields.io/badge/license-Zyvor%20Production%201.0-blue.svg"
-              alt="Zyvor Production License v1.0"
+              alt="Zyvor Production Licence v2.0"
             />
           </div>
         </Reveal>
@@ -123,7 +123,7 @@ function EnterpriseCTA() {
             Need fleet-scale, SLA-backed support?
           </Heading>
           <p className={styles.enterpriseCopy}>
-            netctl is under the Zyvor Production License; running it requires a
+            netctl is under the Zyvor Production Licence; running it requires a
             commercial license. Zyvor Enterprise operates it at
             fleet scale, alongside netevd and cloud-netconfig, with
             professional services and SLA-backed support.
